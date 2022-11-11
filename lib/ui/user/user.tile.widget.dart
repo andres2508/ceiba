@@ -1,5 +1,5 @@
 import 'package:ceiba/model/user/users.model.dart';
-import 'package:ceiba/ui/styles/color.styles.dart';
+import 'package:ceiba/styles/color.styles.dart';
 import 'package:flutter/material.dart';
 
 class UserTile extends StatelessWidget {

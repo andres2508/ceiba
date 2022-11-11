@@ -1,7 +1,7 @@
 import 'package:ceiba/ui/main.module.dart';
 import 'package:ceiba/ui/platform/ceiba.module.dart';
 import 'package:ceiba/ui/router.dart';
-import 'package:ceiba/ui/styles/color.styles.dart';
+import 'package:ceiba/styles/color.styles.dart';
 import 'package:flutter/material.dart';
 
 List<CeibaViewModule> modules = [
