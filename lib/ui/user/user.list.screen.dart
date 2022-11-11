@@ -1,4 +1,5 @@
 import 'package:ceiba/model/user/users.model.dart';
+import 'package:ceiba/ui/common/future_wrapper.widget.dart';
 import 'package:ceiba/ui/common/view.model.consumer.dart';
 import 'package:ceiba/ui/user/user.tile.widget.dart';
 import 'package:ceiba/ui/user/user.view.model.dart';
@@ -18,7 +19,10 @@ class _UserListScreenState extends State<UserListScreen> {
   @override
   void initState() {
     super.initState();
-    this._model.loadList();
+  }
+
+  Future<void> _loadModel() async {
+    await this._model.loadList();
   }
 
   @override
@@ -30,7 +34,10 @@ class _UserListScreenState extends State<UserListScreen> {
         child: Column(
           children: [
             _searchWidget(),
-            Expanded(child: _listView())
+            FutureWrapperWidget(
+              future: _loadModel,
+              builder: (context, snapshot) => Expanded(child: _listView()),
+            )
           ],
         ),
       ),
