@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:ceiba/infrastructure/database/persisten.entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -17,6 +19,12 @@ class User extends PersistenEntity {
   User(this.id, this.name, this.username, this.email, this.address, this.phone,
       this.website, this.company);
 
+  static User fromMap(Map<String, dynamic> map) {
+    return User(map['id'], map['name'], map['username'], map['email'],
+        Address.fromJson( jsonDecode( map['address'] ) ), map['phone'], map['website'],
+        Company.fromJson( jsonDecode( map['company'] ) ) );
+  }
+
   Map<String, dynamic> toJson() => _$UserToJson(this);
 
   factory User.fromJson(Map<String, dynamic> json) =>
@@ -29,7 +37,16 @@ class User extends PersistenEntity {
 
   @override
   Map<String, dynamic> toMap() {
-    return this.toJson();
+    return <String, dynamic> {
+      'id': id,
+      'name': name,
+      'username': username,
+      'email': email,
+      'address': jsonEncode(address).toString(),
+      'phone': phone,
+      'website': website,
+      'company': jsonEncode(company).toString()
+    };
   }
 }
 

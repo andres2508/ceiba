@@ -16,4 +16,8 @@ class DBRepository<T extends PersistenEntity> {
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }
+
+  Future<Database> get database async {
+    return await _databaseProvider.database;
+  }
 }
