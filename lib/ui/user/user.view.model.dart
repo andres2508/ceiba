@@ -12,15 +12,21 @@ class UserViewModel extends BaseViewModel {
 
   get usersFiltered => _filtered;
 
-  Future<void> loadList() async {
+  Future<void> loadModel() async {
     _users = await _repository.findAll();
     if ( _users.isEmpty ) {
-      this._users = await this._service.findAll();
-      _saveUsers();
+      await this.loadList( _service );
+      await _saveUsers();
+    } else {
+      this._filtered = this._users;
     }
-    this._filtered = this._users;
     notifyUI();
     notifyListeners();
+  }
+
+  Future<void> loadList(UserService service) async {
+    this._users = await service.findAll();
+    this._filtered = this._users;
   }
 
   _saveUsers() async {
@@ -30,6 +36,12 @@ class UserViewModel extends BaseViewModel {
   }
 
   search(String text) {
+    filteredBySearchText( text );
+    notifyUI();
+    notifyListeners();
+  }
+
+  filteredBySearchText(String text) {
     if ( text == '' || text == null) {
       this._filtered = this._users;
     } else {
@@ -40,7 +52,5 @@ class UserViewModel extends BaseViewModel {
         }
       }
     }
-    notifyUI();
-    notifyListeners();
   }
 }

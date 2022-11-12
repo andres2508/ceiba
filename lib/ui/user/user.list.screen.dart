@@ -22,7 +22,7 @@ class _UserListScreenState extends State<UserListScreen> {
   }
 
   Future<void> _loadModel() async {
-    await this._model.loadList();
+    await this._model.loadModel();
   }
 
   @override
