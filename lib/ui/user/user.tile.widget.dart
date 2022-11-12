@@ -1,5 +1,6 @@
 import 'package:ceiba/model/user/users.model.dart';
 import 'package:ceiba/styles/color.styles.dart';
+import 'package:ceiba/ui/posts/posts.screen.dart';
 import 'package:flutter/material.dart';
 
 class UserTile extends StatelessWidget {
@@ -56,7 +57,7 @@ class UserTile extends StatelessWidget {
           Align(
             alignment: Alignment.centerRight,
             child: TextButton(
-              onPressed: (){},
+              onPressed: () => Navigator.pushNamed(context, 'posts', arguments: PostParams.from( _user ) ),
               child: Text('VER PUBLICACIONES')
             ),
           )

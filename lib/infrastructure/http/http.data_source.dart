@@ -68,7 +68,7 @@ class HttpDataSource {
     return Future.value(list);
   }
 
-  Future<X> get<X>(String? path, ItemCreator<X> itemCreator,
+  Future<X> getItem<X>(String? path, ItemCreator<X> itemCreator,
       {Map<String, String>? queryParameters}) async {
     Uri uri = baseUri(path: path, queryParams: queryParameters);
     final request = new Request('GET', uri);

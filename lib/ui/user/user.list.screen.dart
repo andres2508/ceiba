@@ -67,7 +67,7 @@ class _UserListScreenState extends State<UserListScreen> {
             return UserTile( user, key: UniqueKey(), );
           },
           itemCount: model.usersFiltered.length,
-          separatorBuilder: (_, int index) => SizedBox(height: 20,),
+          separatorBuilder: (_, int index) => const SizedBox(height: 20,),
         );
       },
     );
